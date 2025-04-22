@@ -1,0 +1,78 @@
+<%- include('./layouts/header') %>
+
+        <div class="container">
+
+            <form action="/product/search" method="GET">
+
+                <div class="mb-3">
+                    <label for="formGroupExampleInput" class="form-label">Category</label>
+                  <select class="form-select" aria-label="Default select example" name="categoryId">
+                    <option selected value="">All Products</option>
+                    <%
+                      if(categories.length>0){
+                        for(const category of categories){
+                    %>
+                    <option value="<%=category._id %>"><%=category.name %></option>
+                    
+                    <% 
+                      }
+                      }
+                    %>
+                  </select>
+                  </div>
+                  <div class="mb-3">
+                    <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Enter product name keyword for search">    
+                </div>
+                  <div>
+              <button type="submit" class="btn btn-primary">Apply filter</button>
+            </div>
+            </form>
+
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>Sl.No</th>
+                        <th>Product Name</th>
+                        <th>Product Description</th>
+                        <th>Product Category</th>
+                        <th>Product Image</th>
+                        <th class="text-center">View</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <%if(products.length>0){
+                        let sl=1;
+                        for(const product of products){
+                        %>
+                        %>
+                        <tr>
+                            <td>
+                                <%=sl++ %>
+                            </td>
+                            <td>
+                                <%=product.name%>
+                            </td>
+                            <td>
+                                <%=product.description%>
+                            </td>
+                            <td>
+                                <%=product.category.name%>
+                            </td>
+                            <td><img src="<%='/'+product.image %>" alt="" style="height: 100px;width: 100px;"></td>
+                            <td><a href="/product/<%= product.productSlug%>/<%=product._id %>" class="btn btn-success">View</a></td>
+                           
+                        </tr>
+                        <% } }else{ %>
+
+                            <td class="text-center" colspan="6">No Data found</td>
+
+                            <% } %>
+
+                </tbody>
+
+        </div>
+
+    </div>
+
+    <%- include('./layouts/footer') %>
+    

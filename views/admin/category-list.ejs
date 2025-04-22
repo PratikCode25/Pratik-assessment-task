@@ -1,0 +1,47 @@
+<%- include('../layouts/admin-header')%>
+
+      <div class="container">
+        <a href="/admin/categories/add" class="btn btn-primary mt-3">Add Category</a>
+
+        <h1>Categories List</h1>
+
+        <div class="mt-3 alert">
+            <%=message %>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Sl.No</th>
+                <th>Category Name</th>
+                <th colspan="2" class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                <%
+                if(data.length>0){
+                    let sl=1;
+                    for(const category of data){
+                %>
+                <tr>
+                    <td><%=sl++ %></td>
+                    <td><%=category.name %></td>
+                    <td><a href="/admin/categories/edit/<%=category._id %>" class="btn btn-warning">Edit</a></td>
+                    <td>
+                        <form action="/admin/categories/softDelete/<%=category._id %>" method="POST">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                      
+                        </td>
+                </tr>
+
+                <%
+            }
+            }
+                %>
+
+             </tbody>   
+      </div>
+
+
+      <%- include('../layouts/admin-footer')%>

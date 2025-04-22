@@ -1,0 +1,20 @@
+<%- include('../layouts/admin-header')%>
+
+      <div class="container">
+        <h3 class="mt-3">Edit Category</h3>
+
+        <div class="text-danger"><%=message %></div>
+       
+        <form class="mt-3" action="/admin/categories/update/<%=category._id %>" method="POST">
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Product Category</label>
+                <input type="text" class="form-control" id="name" name="name" value="<%=category.name %>" placeholder="Enter product category">
+              </div>
+              <div>
+                <button type="submit" class="btn btn-primary">Update Category</button>
+              </div>
+        </form>
+      </div>
+
+
+      <%- include('../layouts/admin-footer')%>
